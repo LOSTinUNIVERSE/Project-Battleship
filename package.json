@@ -4,7 +4,9 @@
   "description": "just a template repo",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack",
+    "watch": "webpack --watch"
   },
   "repository": {
     "type": "git",
@@ -170,6 +172,7 @@
     "typed-array-length": "^1.0.4",
     "unbox-primitive": "^1.0.2",
     "uri-js": "^4.4.1",
+    "webpack-cli": "^5.0.2",
     "which": "^2.0.2",
     "which-boxed-primitive": "^1.0.2",
     "which-typed-array": "^1.1.9",
