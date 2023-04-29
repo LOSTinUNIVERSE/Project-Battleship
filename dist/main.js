@@ -7,26 +7,60 @@
  * If you are looking for production-ready output files, see mode: "production" (https://webpack.js.org/configuration/mode/).
  */
 /******/ (() => { // webpackBootstrap
+/******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
 /***/ "./src/index.js":
 /*!**********************!*\
   !*** ./src/index.js ***!
   \**********************/
-/***/ (() => {
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("const Ship = function (length, hitNumber, sunk) {\n    function hit() { this.hitNumber++ }\n    return {\n        length, hitNumber, sunk, hit\n    }\n}\nconst ship1 = Ship(8, 0, false)\nconsole.log(ship1);\nship1.hit()\n\n\n//# sourceURL=webpack://template/./src/index.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"GameBoard\": () => (/* binding */ GameBoard),\n/* harmony export */   \"Ship\": () => (/* binding */ Ship),\n/* harmony export */   \"fillArray\": () => (/* binding */ fillArray)\n/* harmony export */ });\nconst Ship = function (length, hitNumber, sunk) {\n    function isSunk() {\n        if (this.hitNumber == this.length) this.sunk = true\n    }\n    function hit() { return this.hitNumber++ }\n    return {\n        length, hitNumber, sunk, hit, isSunk\n    }\n}\n\nconst fillArray = function (array, length) {\n    for (let i = 0; i < length; i++) {\n        const element = [];\n        array.push(element)\n        for (let j = 0; j < length; j++) {\n            element[j] = ''\n        }\n    }\n    return array\n}\n\n\nconst GameBoard = function (length) {\n    const array = []\n    fillArray(array, length)\n    return { length, array }\n}\nconst gameBoard = GameBoard(10)\nconsole.log(gameBoard);\n\n//# sourceURL=webpack://template/./src/index.js?");
 
 /***/ })
 
 /******/ 	});
+/************************************************************************/
+/******/ 	// The require scope
+/******/ 	var __webpack_require__ = {};
+/******/ 	
+/************************************************************************/
+/******/ 	/* webpack/runtime/define property getters */
+/******/ 	(() => {
+/******/ 		// define getter functions for harmony exports
+/******/ 		__webpack_require__.d = (exports, definition) => {
+/******/ 			for(var key in definition) {
+/******/ 				if(__webpack_require__.o(definition, key) && !__webpack_require__.o(exports, key)) {
+/******/ 					Object.defineProperty(exports, key, { enumerable: true, get: definition[key] });
+/******/ 				}
+/******/ 			}
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/hasOwnProperty shorthand */
+/******/ 	(() => {
+/******/ 		__webpack_require__.o = (obj, prop) => (Object.prototype.hasOwnProperty.call(obj, prop))
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/make namespace object */
+/******/ 	(() => {
+/******/ 		// define __esModule on exports
+/******/ 		__webpack_require__.r = (exports) => {
+/******/ 			if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
+/******/ 				Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
+/******/ 			}
+/******/ 			Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 		};
+/******/ 	})();
+/******/ 	
 /************************************************************************/
 /******/ 	
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module can't be inlined because the eval devtool is used.
 /******/ 	var __webpack_exports__ = {};
-/******/ 	__webpack_modules__["./src/index.js"]();
+/******/ 	__webpack_modules__["./src/index.js"](0, __webpack_exports__, __webpack_require__);
 /******/ 	
 /******/ })()
 ;
