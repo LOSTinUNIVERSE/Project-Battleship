@@ -19,14 +19,16 @@ export const fillArray = function (array, length) {
     return array
 }
 function placeShip(row, col) {
-    const newShip = Ship(1)
+    const newShip = Ship(2)
     const { map } = this
     row -= 1
     col -= 1
+    if ((row + newShip.length) > map.length) return console.log('stop');
     for (let i = row; i < (row + newShip.length); i++) {
         map[i][col] = newShip
     }
     this.allShips.push(newShip)
+    console.log(map);
 }
 function receiveAttack(row, col) {
     const { map } = this
@@ -41,18 +43,22 @@ function checkSunk(number = 0) {
     gameBoard.allShips.forEach(item => {
         if (item.sunk == true) number++
     })
-    if (number == gameBoard.allShips.length) return console.log('all dead');
+    if (number == gameBoard.allShips.length)
+        return console.log('all dead');
 }
 
 export const GameBoard = function (length) {
     const map = []
     const allShips = []
     fillArray(map, length)
-    return { length, map, placeShip, receiveAttack, allShips, checkSunk }
+    return {
+        length, map, placeShip,
+        receiveAttack, allShips, checkSunk
+    }
 }
 const gameBoard = GameBoard(10)
-gameBoard.placeShip(2, 2)
-gameBoard.placeShip(4, 4)
-gameBoard.receiveAttack(2, 2)
-gameBoard.receiveAttack(4, 4)
-gameBoard.checkSunk()
+// gameBoard.placeShip(2, 2)
+gameBoard.placeShip(10, 4)
+// gameBoard.receiveAttack(2, 2)
+// gameBoard.receiveAttack(4, 4)
+// gameBoard.checkSunk()
