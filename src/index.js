@@ -1,14 +1,16 @@
 export const Ship = function (length, hitNumber, sunk) {
     function isSunk() {
-        if (this.hitNumber == this.length) this.sunk = true
+        if (this.hitNumber == this.length) return this.sunk = true
     }
 
-    function hit() { return this.hitNumber++ }
+    function hit() {
+        this.hitNumber++
+    }
     return {
         length, hitNumber, sunk, hit, isSunk
     }
 }
-const newShip = Ship(3, 0, false)
+const newShip = Ship(1, 0, false)
 
 export const fillArray = function (array, length) {
     for (let i = 0; i < length; i++) {
@@ -28,11 +30,36 @@ function placeShip(row, col) {
         map[i][col] = newShip
     }
 }
+function receiveAttack(row, col) {
+    const { map } = this
+    row -= 1
+    col -= 1
+    if (this.map[row][col] == '') this.map[row][col] = '0'
+    if (this.map[row][col] != '' && this.map[row][col] != 0) {
+        this.map[row][col].hit();
+    }
+}
+
 export const GameBoard = function (length) {
     const map = []
     fillArray(map, length)
-    return { length, map, placeShip }
+    return { length, map, placeShip, receiveAttack, checkBoard }
 }
 const gameBoard = GameBoard(10)
 gameBoard.placeShip(2, 2)
-console.log(gameBoard.map);
+gameBoard.receiveAttack(2, 5)
+// gameBoard.checkBoard()
+// function checkBoard() {
+    // this.map.forEach(item => {
+        // item.forEach(element => {
+            // if (element != '' && element != 0) {
+                // element.hit()
+                // if (element.isSunk()) {
+                    // console.log(element);
+// 
+                // }
+            // }
+        // }
+        // )
+    // });
+// }
