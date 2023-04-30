@@ -29,6 +29,22 @@ test('test receiveAttack function ', () => {
     gameBoard.receiveAttack(2, 2)
     expect(gameBoard.map[2][2]).toBe('not missed')
 })
+test('test fillArray function ', () => {
+    const gameBoard = GameBoard(10)
+    gameBoard.placeShip(2, 2)
+    gameBoard.allShips[0].hit()
+    expect(gameBoard.allShips.length).toBe(1)
+    function checkSunk(number = 0) {
+        gameBoard.allShips.forEach(item => {
+            if (item.sunk == true) number++
+        })
+        if (number == gameBoard.allShips.length) {
+            console.log('all dead');
+            return 1
+        }
+    }
+    expect(checkSunk()).toBe(1)
+})
 
 
 

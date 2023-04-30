@@ -1,16 +1,12 @@
-export const Ship = function (length, hitNumber, sunk) {
-    function isSunk() {
-        if (this.hitNumber == this.length) return this.sunk = true
-    }
-
+export const Ship = function (length, hitNumber = 0, sunk = false) {
     function hit() {
         this.hitNumber++
+        if (this.hitNumber == this.length) this.sunk = true
     }
     return {
-        length, hitNumber, sunk, hit, isSunk
+        length, hitNumber, sunk, hit
     }
 }
-const newShip = Ship(1, 0, false)
 
 export const fillArray = function (array, length) {
     for (let i = 0; i < length; i++) {
@@ -23,12 +19,14 @@ export const fillArray = function (array, length) {
     return array
 }
 function placeShip(row, col) {
+    const newShip = Ship(1)
     const { map } = this
     row -= 1
     col -= 1
     for (let i = row; i < (row + newShip.length); i++) {
         map[i][col] = newShip
     }
+    this.allShips.push(newShip)
 }
 function receiveAttack(row, col) {
     const { map } = this
@@ -39,27 +37,22 @@ function receiveAttack(row, col) {
         this.map[row][col].hit();
     }
 }
+function checkSunk(number = 0) {
+    gameBoard.allShips.forEach(item => {
+        if (item.sunk == true) number++
+    })
+    if (number == gameBoard.allShips.length) return console.log('all dead');
+}
 
 export const GameBoard = function (length) {
     const map = []
+    const allShips = []
     fillArray(map, length)
-    return { length, map, placeShip, receiveAttack, checkBoard }
+    return { length, map, placeShip, receiveAttack, allShips, checkSunk }
 }
 const gameBoard = GameBoard(10)
 gameBoard.placeShip(2, 2)
-gameBoard.receiveAttack(2, 5)
-// gameBoard.checkBoard()
-// function checkBoard() {
-    // this.map.forEach(item => {
-        // item.forEach(element => {
-            // if (element != '' && element != 0) {
-                // element.hit()
-                // if (element.isSunk()) {
-                    // console.log(element);
-// 
-                // }
-            // }
-        // }
-        // )
-    // });
-// }
+gameBoard.placeShip(4, 4)
+gameBoard.receiveAttack(2, 2)
+gameBoard.receiveAttack(4, 4)
+gameBoard.checkSunk()
