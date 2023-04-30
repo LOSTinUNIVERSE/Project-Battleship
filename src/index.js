@@ -2,6 +2,7 @@ export const Ship = function (length, hitNumber, sunk) {
     function isSunk() {
         if (this.hitNumber == this.length) this.sunk = true
     }
+
     function hit() { return this.hitNumber++ }
     return {
         length, hitNumber, sunk, hit, isSunk
@@ -19,18 +20,19 @@ export const fillArray = function (array, length) {
     }
     return array
 }
-
+function placeShip(row, col) {
+    const { map } = this
+    row -= 1
+    col -= 1
+    for (let i = row; i < (row + newShip.length); i++) {
+        map[i][col] = newShip
+    }
+}
 export const GameBoard = function (length) {
     const map = []
     fillArray(map, length)
-    function placeShip(row, col) {
-        for (let i = row; i < (row + newShip.length); i++) {
-            map[i][col] = 3
-        }
-    }
     return { length, map, placeShip }
 }
 const gameBoard = GameBoard(10)
-gameBoard.placeShip(2, 1)
-console.log(gameBoard);
+gameBoard.placeShip(2, 2)
 console.log(gameBoard.map);
