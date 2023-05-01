@@ -18,8 +18,8 @@ export const fillArray = function (array, length) {
     }
     return array
 }
-function placeShip(row, col) {
-    const newShip = Ship(1)
+function placeShip(row, col, length = 1) {
+    const newShip = Ship(length)
     const { map } = this
     row -= 1
     col -= 1
@@ -30,23 +30,26 @@ function placeShip(row, col) {
     this.allShips.push(newShip)
 }
 function playerChecker(player, map) {
-    if (player == player1) {
-        player1.myTurn = false
+    if (player == artPlayer) {
+        artPlayer.myTurn = false
         player2.myTurn = true
     }
     if (player == player2) {
         player2.myTurn = false
-        player1.myTurn = true
+        artPlayer.myTurn = true
     }
 }
-function receiveAttack(row, col) {
+export function receiveAttack(row, col) {
+    console.log(row, col);
     if (this.myTurn == false) return
     playerChecker(this)
     const { map } = this
-    console.log(map);
     row -= 1
     col -= 1
-    if (map[row][col] == 0) console.log('occupied');
+    if (map[row][col] == '0') {
+        console.log('to 0')
+        return 0
+    }
     if (map[row][col] == '') map[row][col] = '0'
     if (map[row][col] != '' && map[row][col] != 0) {
         map[row][col].hit();
@@ -72,14 +75,8 @@ export const GameBoard = function (length) {
         myTurn
     }
 }
-const player1 = GameBoard(10)
-const player2 = GameBoard(10)
-console.log(player1.length);
+export const artPlayer = GameBoard(10)
+export const player2 = GameBoard(10)
 console.log(player2.length);
 
-player1.placeShip(4, 4)
-player1.placeShip(2, 2)
-player1.receiveAttack(2, 2)
-player2.receiveAttack(2, 2)
-player1.receiveAttack(4, 4)
-player2.receiveAttack(4, 4)
+

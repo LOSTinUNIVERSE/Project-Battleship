@@ -1,4 +1,4 @@
-import { Ship, fillArray, GameBoard } from './gameBoard';
+import { Ship, fillArray, GameBoard, player2, artPlayer } from './gameBoard';
 
 test('test hitNumber', () => {
     const ship = Ship(1, 0, false)
@@ -53,5 +53,32 @@ test('test random number', () => {
     expect(randomNum()).toBeGreaterThan(1)
     expect(randomNum()).toBeLessThan(11)
 })
+test('start the game ', () => {
+    function start() {
+        for (let i = 5; i > 0; i--) {
+            player2.placeShip(i + 4, i + 3)
+            artPlayer.placeShip(i + 4, i + 3)
+        }
+        console.log(player2.allShips);
+    }
+    start()
+    expect(player2.allShips.length).toBe(5)
+    expect(artPlayer.allShips.length).toBe(5)
+})
+// test('test random attaack', () => {
+//     let n1 = 0
+//     let n2 = 0
+//     function makeRandomMove() {
+//         const num1 = Math.floor(Math.random() * 10) + 1
+//         n1 = num1
+//         const num2 = Math.floor(Math.random() * 10) + 1
+//         n2 = num2
+//         console.log(num1, num2);
+//         player2.receiveAttack(num1, num2)
+//         console.log(player2.map);
+//     }
+//     expect(player2.map[n1][n2]).toBe('')
+// })
+
 
 

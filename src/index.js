@@ -1,9 +1,13 @@
-import { Ship, GameBoard } from './gameBoard'
+import { Ship, GameBoard, artPlayer, player2, receiveAttack } from './gameBoard'
+import makeRandomMove from './players'
 
-// player1.placeShip(4, 4)
-// player1.placeShip(2, 2)
-// player1.receiveAttack(2, 2)
-// player1.receiveAttack(4, 4)
-// player1.checkSunk()
-// console.log(player1);
+// artPlayer.placeShip(2, 2)
+// artPlayer.placeShip(3, 4)
+// player2.placeShip(5, 2)
+// player2.placeShip(6, 7)
+// artPlayer.receiveAttack(2, 2)
+// makeRandomMove()
+// artPlayer.receiveAttack(3, 4)
+// makeRandomMove()
+
 
