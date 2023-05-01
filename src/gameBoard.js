@@ -75,8 +75,13 @@ export const GameBoard = function (length) {
         myTurn
     }
 }
-export const artPlayer = GameBoard(10)
-export const player2 = GameBoard(10)
-console.log(player2.length);
+let artPlayer = ''
+let player2 = ''
+export function reStartPlayers() {
+    artPlayer = GameBoard(10)
+    player2 = GameBoard(10)
+}
+
+export { artPlayer, player2 }
 
 

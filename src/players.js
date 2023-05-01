@@ -1,4 +1,5 @@
-import { player2, artPlayer, GameBoard } from './gameBoard'
+import { player2, artPlayer, reStartPlayers } from './gameBoard'
+
 
 export default function makeRandomMove() {
     const num1 = Math.floor(Math.random() * 10) + 1
@@ -7,6 +8,7 @@ export default function makeRandomMove() {
     if (result == 0) makeRandomMove()
 }
 function start() {
+    reStartPlayers()
     for (let i = 5; i > 0; i--) {
         player2.placeShip(i, i + 3, i)
         artPlayer.placeShip(i, i + 3, i)
@@ -17,6 +19,10 @@ function start() {
     console.log(artPlayer.map);
     console.log(player2.map);
     console.log(artPlayer.map);
+    reStartPlayers()
+    console.log(player2.map);
+    console.log(artPlayer.map);
+
 
     // this function recreates players
 
