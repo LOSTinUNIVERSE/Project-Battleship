@@ -1,4 +1,5 @@
-import { Ship, fillArray, GameBoard } from './index';
+import { checkPlayers } from 'globalthis/implementation';
+import { Ship, fillArray, GameBoard } from './gameBoard';
 
 test('test hitNumber', () => {
     const ship = Ship(1, 0, false)

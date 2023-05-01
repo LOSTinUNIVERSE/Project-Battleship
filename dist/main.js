@@ -10,20 +10,51 @@
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
+/***/ "./src/gameBoard.js":
+/*!**************************!*\
+  !*** ./src/gameBoard.js ***!
+  \**************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"GameBoard\": () => (/* binding */ GameBoard),\n/* harmony export */   \"Ship\": () => (/* binding */ Ship),\n/* harmony export */   \"fillArray\": () => (/* binding */ fillArray)\n/* harmony export */ });\nconst Ship = function (length, hitNumber = 0, sunk = false) {\n    function hit() {\n        this.hitNumber++\n        if (this.hitNumber == this.length) this.sunk = true\n    }\n    return {\n        length, hitNumber, sunk, hit\n    }\n}\n\nconst fillArray = function (array, length) {\n    for (let i = 0; i < length; i++) {\n        const element = [];\n        array.push(element)\n        for (let j = 0; j < length; j++) {\n            element[j] = ''\n        }\n    }\n    return array\n}\nfunction placeShip(row, col) {\n    const newShip = Ship(1)\n    const { map } = this\n    row -= 1\n    col -= 1\n    if ((row + newShip.length) > map.length) return console.log('stop');\n    for (let i = row; i < (row + newShip.length); i++) {\n        map[i][col] = newShip\n    }\n    this.allShips.push(newShip)\n    console.log(map);\n}\n//! we are here, added this if statement, eventhough without pseudo code\n//! I need to make a pseudo code or think about it \nfunction receiveAttack(row, col) {\n    if (player1.myTurn == false) {\n        console.log('not your turn')\n        return player2.myTurn == true\n    }\n    if (player2.myTurn == false) {\n        console.log('not your turn')\n        return player1.myTurn == true\n    }\n    if (player1.myTurn == false) player2.myTurn = true\n    if (player2.myTurn == false) player1.myTurn = true\n    console.log('to here');\n    const { map } = this\n    row -= 1\n    col -= 1\n    if (this.map[row][col] == '') this.map[row][col] = '0'\n    if (this.map[row][col] != '' && this.map[row][col] != 0) {\n        this.map[row][col].hit();\n    }\n}\nfunction checkSunk(number = 0) {\n    this.allShips.forEach(item => {\n        if (item.sunk == true) number++\n    })\n    if (number == this.allShips.length)\n        return console.log('all dead');\n}\n\nconst GameBoard = function (length) {\n    const map = []\n    const myTurn = false\n    const allShips = []\n    fillArray(map, length)\n    return {\n        length, map, placeShip,\n        receiveAttack, allShips, checkSunk,\n        myTurn\n    }\n}\nconst player1 = GameBoard(10)\nconst player2 = GameBoard(10)\nconsole.log(player1.length);\nconsole.log(player2.length);\n\nplayer1.placeShip(4, 4)\nplayer1.placeShip(2, 2)\nplayer1.receiveAttack(2, 2)\nplayer1.receiveAttack(4, 4)\n// player1.checkSunk()\n// console.log(player1);\n\n\n//# sourceURL=webpack://template/./src/gameBoard.js?");
+
+/***/ }),
+
 /***/ "./src/index.js":
 /*!**********************!*\
   !*** ./src/index.js ***!
   \**********************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"GameBoard\": () => (/* binding */ GameBoard),\n/* harmony export */   \"Ship\": () => (/* binding */ Ship),\n/* harmony export */   \"fillArray\": () => (/* binding */ fillArray)\n/* harmony export */ });\nconst Ship = function (length, hitNumber = 0, sunk = false) {\n    function hit() {\n        this.hitNumber++\n        if (this.hitNumber == this.length) this.sunk = true\n    }\n    return {\n        length, hitNumber, sunk, hit\n    }\n}\n\nconst fillArray = function (array, length) {\n    for (let i = 0; i < length; i++) {\n        const element = [];\n        array.push(element)\n        for (let j = 0; j < length; j++) {\n            element[j] = ''\n        }\n    }\n    return array\n}\nfunction placeShip(row, col) {\n    const newShip = Ship(2)\n    const { map } = this\n    row -= 1\n    col -= 1\n    if ((row + newShip.length) > map.length) return console.log('stop');\n    for (let i = row; i < (row + newShip.length); i++) {\n        map[i][col] = newShip\n    }\n    this.allShips.push(newShip)\n    console.log(map);\n}\nfunction receiveAttack(row, col) {\n    const { map } = this\n    row -= 1\n    col -= 1\n    if (this.map[row][col] == '') this.map[row][col] = '0'\n    if (this.map[row][col] != '' && this.map[row][col] != 0) {\n        this.map[row][col].hit();\n    }\n}\nfunction checkSunk(number = 0) {\n    gameBoard.allShips.forEach(item => {\n        if (item.sunk == true) number++\n    })\n    if (number == gameBoard.allShips.length)\n        return console.log('all dead');\n}\n\nconst GameBoard = function (length) {\n    const map = []\n    const allShips = []\n    fillArray(map, length)\n    return {\n        length, map, placeShip,\n        receiveAttack, allShips, checkSunk\n    }\n}\nconst gameBoard = GameBoard(10)\n// gameBoard.placeShip(2, 2)\ngameBoard.placeShip(10, 4)\n// gameBoard.receiveAttack(2, 2)\n// gameBoard.receiveAttack(4, 4)\n// gameBoard.checkSunk()\n\n\n//# sourceURL=webpack://template/./src/index.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _gameBoard__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./gameBoard */ \"./src/gameBoard.js\");\n\n\n// player1.placeShip(4, 4)\n// player1.placeShip(2, 2)\n// player1.receiveAttack(2, 2)\n// player1.receiveAttack(4, 4)\n// player1.checkSunk()\n// console.log(player1);\n\n\n\n//# sourceURL=webpack://template/./src/index.js?");
 
 /***/ })
 
 /******/ 	});
 /************************************************************************/
-/******/ 	// The require scope
-/******/ 	var __webpack_require__ = {};
+/******/ 	// The module cache
+/******/ 	var __webpack_module_cache__ = {};
+/******/ 	
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+/******/ 		// Check if module is in cache
+/******/ 		var cachedModule = __webpack_module_cache__[moduleId];
+/******/ 		if (cachedModule !== undefined) {
+/******/ 			return cachedModule.exports;
+/******/ 		}
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = __webpack_module_cache__[moduleId] = {
+/******/ 			// no module.id needed
+/******/ 			// no module.loaded needed
+/******/ 			exports: {}
+/******/ 		};
+/******/ 	
+/******/ 		// Execute the module function
+/******/ 		__webpack_modules__[moduleId](module, module.exports, __webpack_require__);
+/******/ 	
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
 /******/ 	
 /************************************************************************/
 /******/ 	/* webpack/runtime/define property getters */
@@ -59,8 +90,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module can't be inlined because the eval devtool is used.
-/******/ 	var __webpack_exports__ = {};
-/******/ 	__webpack_modules__["./src/index.js"](0, __webpack_exports__, __webpack_require__);
+/******/ 	var __webpack_exports__ = __webpack_require__("./src/index.js");
 /******/ 	
 /******/ })()
 ;
