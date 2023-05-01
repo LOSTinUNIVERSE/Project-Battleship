@@ -20,8 +20,6 @@ function start() {
     console.log(player2.map);
     console.log(artPlayer.map);
     reStartPlayers()
-    console.log(player2.map);
-    console.log(artPlayer.map);
 
 
     // this function recreates players
