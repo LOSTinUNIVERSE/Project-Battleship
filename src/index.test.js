@@ -1,4 +1,3 @@
-import { checkPlayers } from 'globalthis/implementation';
 import { Ship, fillArray, GameBoard } from './gameBoard';
 
 test('test hitNumber', () => {
@@ -46,6 +45,13 @@ test('test fillArray function ', () => {
     }
     expect(checkSunk()).toBe(1)
 })
-
+test('test random number', () => {
+    function randomNum() {
+        const num1 = Math.floor(Math.random() * 10) + 1
+        return num1
+    }
+    expect(randomNum()).toBeGreaterThan(1)
+    expect(randomNum()).toBeLessThan(11)
+})
 
 

@@ -28,31 +28,31 @@ function placeShip(row, col) {
         map[i][col] = newShip
     }
     this.allShips.push(newShip)
-    console.log(map);
 }
-//! we are here, added this if statement, eventhough without pseudo code
-//! I need to make a pseudo code or think about it 
+function playerChecker(player, map) {
+    if (player == player1) {
+        player1.myTurn = false
+        player2.myTurn = true
+    }
+    if (player == player2) {
+        player2.myTurn = false
+        player1.myTurn = true
+    }
+}
 function receiveAttack(row, col) {
-
-    if (player1.myTurn == false) {
-        console.log('not your turn')
-        return player2.myTurn == true
-    }
-    if (player2.myTurn == false) {
-        console.log('not your turn')
-        return player1.myTurn == true
-    }
-    if (player1.myTurn == false) player2.myTurn = true
-    if (player2.myTurn == false) player1.myTurn = true
-    console.log('to here');
+    if (this.myTurn == false) return
+    playerChecker(this)
     const { map } = this
+    console.log(map);
     row -= 1
     col -= 1
-    if (this.map[row][col] == '') this.map[row][col] = '0'
-    if (this.map[row][col] != '' && this.map[row][col] != 0) {
-        this.map[row][col].hit();
+    if (map[row][col] == 0) console.log('occupied');
+    if (map[row][col] == '') map[row][col] = '0'
+    if (map[row][col] != '' && map[row][col] != 0) {
+        map[row][col].hit();
     }
 }
+
 function checkSunk(number = 0) {
     this.allShips.forEach(item => {
         if (item.sunk == true) number++
@@ -63,7 +63,7 @@ function checkSunk(number = 0) {
 
 export const GameBoard = function (length) {
     const map = []
-    const myTurn = false
+    const myTurn = true
     const allShips = []
     fillArray(map, length)
     return {
@@ -80,6 +80,6 @@ console.log(player2.length);
 player1.placeShip(4, 4)
 player1.placeShip(2, 2)
 player1.receiveAttack(2, 2)
+player2.receiveAttack(2, 2)
 player1.receiveAttack(4, 4)
-// player1.checkSunk()
-// console.log(player1);
+player2.receiveAttack(4, 4)
